@@ -17,9 +17,9 @@ export class SetStreamMusicService {
     input: SetStreamMessageDto,
   ): Promise<void> {
     const connection = await this.connectionRepository.findByCode(code);
-    connection.message = input.message;
-    await this.connectionRepository.update(connection);
-
+    if (!connection) {
+      throw new Error('Código não encontrado');
+    }
     await this.streamMessageGateway.handleUpdate(code, input.message);
   }
 }

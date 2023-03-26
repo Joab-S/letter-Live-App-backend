@@ -16,7 +16,6 @@ export class ConnectionRepositoryImpl extends AbstractConnectionRepository {
   ): Promise<ConnectionStreamEntity> {
     const ConnectionStreamEntity: ConnectionStream = queryrunner.manager.create(ConnectionStream, {
       connectionCode: ConnectionData.connectionCode,
-      message: ConnectionData.message || null,
     });
 
     const savedConnection = await queryrunner.manager.save(ConnectionStreamEntity); 

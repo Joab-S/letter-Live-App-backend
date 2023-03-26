@@ -13,7 +13,5 @@ export class GetStreamMusicService {
     if (!connection) {
       return null;
     }
-
-    return connection.message;
   }
 }

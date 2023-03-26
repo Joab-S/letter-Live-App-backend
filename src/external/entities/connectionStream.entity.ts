@@ -15,9 +15,6 @@ export class ConnectionStream extends BaseEntity {
   @Column({ nullable: true, type: 'varchar', length: 200 })
   connectionCode: string;
 
-  @Column({ nullable: true, type: 'mediumtext'})
-  message: string;
-
   @CreateDateColumn()
   createdAt: Date;
 

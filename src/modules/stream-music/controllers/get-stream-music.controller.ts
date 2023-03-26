@@ -1,9 +1,8 @@
-import { Body, Controller, Get, HttpCode, Param, Res, ValidationPipe } from "@nestjs/common";
+import { Controller, Get, Param, Res, } from "@nestjs/common";
 import { Response } from 'express';
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiTags } from "@nestjs/swagger";
 import { GetStreamMusicService } from "../usecases/get-stream-music.service";
 import { StreamMessageGateway } from "@/modules/websocket/websocket.gateway";
-import { Server } from 'socket.io';
 
 @ApiTags('Stream Music')
 @Controller('/stream-message')
@@ -13,6 +12,7 @@ export class GetStreamMusicController {
     private readonly streamMessageGateway: StreamMessageGateway,
   ) {}
 
+  /*
   @Get(':connectionCode')
   @ApiOperation({
     summary: '...',
@@ -25,6 +25,7 @@ export class GetStreamMusicController {
     const message = await this.getStreamMusicService.execute(connectionCode);
     return { message, code: connectionCode };
   }
+  */
 
   @Get('/letter/:connectionCode')
   async renderLetter(
