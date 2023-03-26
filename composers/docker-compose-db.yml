@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:oracle
+    restart: always
+    container_name: letter-mysql
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    env_file:
+      - ../.env
+    environment:
+      MYSQL_USER: letterUser
+      MYSQL_PASSWORD: letter
+      MYSQL_DATABASE: letterDataBase
+      MYSQL_ROOT_PASSWORD: letter
+    volumes:
+      - letter-db:/var/lib/mysql
+
+volumes:
+  letter-db:

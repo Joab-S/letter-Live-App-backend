@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <title>Letter Live App</title>
+    <link rel= "stylesheet" type= "text/css" href= "letter.css" />
+    <!--<script src="node_modules/socket.io/client-dist/socket.io.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js" integrity="sha512-eVL5Lb9al9FzgR63gDs1MxcDS2wFu3loYAgjIH0+Hg38tCS8Ag62dwKyH+wzDb+QauDpEZjXbMn11blw8cbTJQ==" crossorigin="anonymous"></script>
+    <!--<meta http-equiv="refresh" content="1";>-->
+  </head>
+  <body>
+    <span class="letter_slide" style="white-space: pre-wrap">
+      <center> {{ message }} </center>
+    </span>
+    <script type="text/javascript">
+      const code = "{{ code }}";
+      const url = `ws://${window.location.host}/`;
+      const socket = io(url);
+      socket.on('connect', () => {
+        console.log('Connected to websocket server');
+        const messageElement = document.querySelector('.letter_slide');
+        socket.emit('join-room', `letter-${code}`);
+        socket.on('update-letter', (data) => {
+          messageElement.innerHTML = `<center>${data}</center>`;
+        });
+      });
+    </script>
+  </body>
+</html>
